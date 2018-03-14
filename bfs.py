@@ -5,6 +5,19 @@ import queue
 
 def distance(adj, s, t):
     #write your code here
+    dist = [10**5+1]*len(adj)
+    dist[s] = 0
+    Q = queue.Queue()
+    Q.put(s)
+    while Q.qsize() > 0:
+        u = Q.get()
+        for i in range(len(adj[u])):
+            v = adj[u][i]
+            if dist[v] == 10**5+1:
+                Q.put(v)
+                dist[v] = dist[u] + 1
+                if v == t:
+                    return dist[v]
     return -1
 
 if __name__ == '__main__':
